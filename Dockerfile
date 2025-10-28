@@ -1,6 +1,6 @@
 #build the app
 
-FROM node:alpine as build
+FROM node:alpine as build (as last push 6 days ago)
 
 WORKDIR /app
 
@@ -14,9 +14,11 @@ RUN npm run build
 
 #stage 2: render app with nginx
 
-FROM nginx:alpine (last 3 days)
+FROM nginx:alpine 
 
-COPY --from=build /app/dist /usr/share/nginx/html
+
+COPY --from=build /app/dist /usr/share/nginx/html dest
+
 
 EXPOSE 80
 
